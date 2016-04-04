@@ -1,0 +1,16 @@
+<!doctype html><html class="no-js" lang=""><head><meta charset="utf-8"><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1"><title>howgorithm</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><!-- Place favicon.ico in the root directory --><link rel="stylesheet" href="styles/vendor.css"><link rel="stylesheet" href="styles/main.css"><script src="scripts/vendor/modernizr.js"></script></head><body><!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]--><div class="container"><header class="page-header"><h1>howgorithm POC</h1></header><section><h2>Adjacency List</h2><textarea class="form-control" rows="12" id="adjacency-list">
+              {
+                'Start': ['Option-1', 'Option-2'],
+                'Option-1': ['Option-1-1','Option-1-2'],
+                'Option-1-1': ['Option-1-1-1'],
+                'Option-1-1-1': [],
+                'Option-1-2': [],
+                'Option-2': ['Option-2-1', 'Option-2-2'],
+                'Option-2-1': ['Option-2-1-1'],
+                'Option-2-1-1': ['Option-2-1-1-1'],
+                'Option-2-1-1-1': [],
+                'Option-2-2': []
+              }
+            </textarea></section><section><h2>Interactive Chart <button class="btn btn-primary pull-right" id="layout">Layout</button></h2><div id="paper" style="width:100%; overflow-y: auto; overflow-x: auto; border: 0.5px solid #ccc"></div></section><section><h2><button class="btn btn-primary pull-right" id="render">Render</button> Canvas</h2><canvas id="canvas" style="width:100%; overflow-y: auto; overflow-x: auto; border: 0.5px solid #ccc"></canvas></section><section><h2>PNG for Print</h2><img id="renderImage"></section></div><script src="scripts/vendor.js"></script><script src="scripts/plugins.js"></script><script src="scripts/main.js"></script></body></html>
