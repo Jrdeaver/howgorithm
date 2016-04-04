@@ -1,4 +1,8 @@
-var graph = new joint.dia.Graph;
+/*global $, joint, _, V, canvg*/
+/*eslint-disable*/
+'use strict';
+
+var graph = new joint.dia.Graph();
 
 var paper = new joint.dia.Paper({
 
@@ -8,21 +12,6 @@ var paper = new joint.dia.Paper({
     gridSize: 1,
     model: graph
 });
-
-function buildGraphFromAdjacencyList(adjacencyList) {
-	var elements = [];
-	var links = [];
-
-	_.each(adjacencyList, function(edges, parentElementLabel) {
-		elements.push(makeElement(parentElementLabel));
-
-		_.each(edges, function(childElementLabel) {
-			links.push(makeLink(parentElementLabel, childElementLabel));
-		});
-	});
-
-    return elements.concat(links);
-}
 
 function makeLink(parentElementLabel, childElementLabel) {
 	return new joint.dia.Link({
@@ -54,21 +43,30 @@ function makeElement(label) {
 	});
 }
 
+function buildGraphFromAdjacencyList(adjacencyList) {
+	var elements = [];
+	var links = [];
+
+	_.each(adjacencyList, function(edges, parentElementLabel) {
+		elements.push(makeElement(parentElementLabel));
+
+		_.each(edges, function(childElementLabel) {
+			links.push(makeLink(parentElementLabel, childElementLabel));
+		});
+	});
+
+    return elements.concat(links);
+}
+
 V(paper.viewport).translate(20, 20);
 
-$('#layout').on('click', layout);
-$('#render').on('click', renderCanvas);
-
 function layout() {
-    
     try {
         var adjacencyList = eval('adjacencyList = ' + $('#adjacency-list').val());
     } catch (e) { alert(e); }
-    
     var cells = buildGraphFromAdjacencyList(adjacencyList);
     graph.resetCells(cells);
     joint.layout.DirectedGraph.layout(graph, { setLinkVertices: false });
-    paper.$el.css('pointer-events', 'none')
 }
 
 function renderCanvas() {
@@ -81,3 +79,6 @@ function renderCanvas() {
 	var renderImage = canvas.toDataURL('image/png');
 	$('#renderImage').attr('src', renderImage);
 }
+
+$('#layout').on('click', layout);
+$('#render').on('click', renderCanvas);
